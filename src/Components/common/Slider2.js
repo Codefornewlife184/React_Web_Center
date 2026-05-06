@@ -9,7 +9,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useTranslation } from "react-i18next";
 
 const Slider2 = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const options = {
     items: 1,
@@ -26,10 +26,19 @@ const Slider2 = () => {
     ]
   };
 
+  // Her render'da çevirileri yeniden hesapla
+  const getTranslation = (key) => {
+    return t(key);
+  };
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <section className="slider-twelev">
-        <OwlCarousel className="banner-carousel owl-theme" {...options}>
+      <section className="slider-twelev" key={i18n.language}>
+        <OwlCarousel 
+          className="banner-carousel owl-theme" 
+          {...options}
+          key={`carousel-${i18n.language}`}
+        >
           <div className="item">
             <div className="slider-twelev__item">
               <div className="slider-twelev__bg">
@@ -52,13 +61,13 @@ const Slider2 = () => {
               <div className="container">
                 <div className="slider-twelev__content">
                   <h3 className="slider-twelev__title">
-                    <div className="title-word">{t("İŞLETMENİZİ")}</div>
-                    <div className="title-word">{t("DİJİTAL OLARAK")}</div>
-                    <div className="title-word">{t("BÜYÜTMEK")}</div>
-                    <div className="title-word">{t("İSTİYORSANIZ")}</div>
+                    <div className="title-word">{getTranslation("İŞLETMENİZİ")}</div>
+                    <div className="title-word">{getTranslation("DİJİTAL OLARAK")}</div>
+                    <div className="title-word">{getTranslation("BÜYÜTMEK")}</div>
+                    <div className="title-word">{getTranslation("İSTİYORSANIZ")}</div>
                   </h3>
                   <div className="slider-twelev__btn">
-                    <a href="https://wa.me/905456136819" className="thm-btn-twelev">{t("HIZLI TEKLİF ALIN!")}</a>
+                    <a href="https://wa.me/905456136819" className="thm-btn-twelev">{getTranslation("HIZLI TEKLİF ALIN!")}</a>
                   </div>
                 </div>
               </div>
@@ -75,7 +84,6 @@ const Slider2 = () => {
               </div>
             </div>
           </div>
-          {/* item */}
           <div className="item">
             <div className="slider-twelev__item">
               <div className="slider-twelev__bg"
@@ -83,13 +91,13 @@ const Slider2 = () => {
               <div className="container">
                 <div className="slider-twelev__content">
                   <h3 className="slider-twelev__title">
-                    <div className="title-word">{t("İŞLETMENİZİ")}</div>
-                    <div className="title-word">{t("DİJİTAL OLARAK")}</div>
-                    <div className="title-word">{t("BÜYÜTMEK")}</div>
-                    <div className="title-word">{t("İSTİYORSANIZ")}</div>
+                    <div className="title-word">{getTranslation("İŞLETMENİZİ")}</div>
+                    <div className="title-word">{getTranslation("DİJİTAL OLARAK")}</div>
+                    <div className="title-word">{getTranslation("BÜYÜTMEK")}</div>
+                    <div className="title-word">{getTranslation("İSTİYORSANIZ")}</div>
                   </h3>
                   <div className="slider-twelev__btn">
-                    <a href="https://wa.me/905456136819" className="thm-btn-twelev">{t("HIZLI TEKLİF ALIN!")}</a>
+                    <a href="https://wa.me/905456136819" className="thm-btn-twelev">{getTranslation("HIZLI TEKLİF ALIN!")}</a>
                   </div>
                 </div>
               </div>
@@ -106,9 +114,7 @@ const Slider2 = () => {
               </div>
             </div>
           </div>
-          {/* item */}
         </OwlCarousel>
-        {/* slider-twelev__carousel */}
       </section>
     </Suspense>
   );

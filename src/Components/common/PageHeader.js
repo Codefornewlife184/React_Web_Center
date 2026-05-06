@@ -31,12 +31,12 @@ const PageHeader = ({
     <>
       <section className="page-header mt--120">
         <div
-          class="contact-info__business-hours__bg"
+          className="contact-info__business-hours__bg"
           style={{
             backgroundImage: "url(assets/images/shapes/contact-bg-1-2.png)",
           }}
         ></div>
-        <section class="page-banner mb-5">
+        <section className="page-banner mb-5">
           <div 
             className="image-layer" 
             style={{ backgroundImage: `url(${backgroundImage})` }}

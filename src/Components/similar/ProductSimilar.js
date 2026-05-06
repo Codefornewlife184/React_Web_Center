@@ -1,7 +1,4 @@
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
 /* import $ from "jquery"; */
-import "owl.carousel";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Col, Row } from "react-bootstrap";
@@ -13,8 +10,8 @@ function ProductSimilar() {
 
   return (
     <>
-      <section class="product mt--100">
-        <div class="container">
+      <section className="product mt--100">
+        <div className="container">
           <div class="section-title text-center">
             <div class="section-title__triangle">
               <img

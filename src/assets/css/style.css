@@ -12729,7 +12729,7 @@ img.lazy-image.loaded {
   display: flex;
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   position: relative;
 }
 
@@ -12887,7 +12887,7 @@ img.lazy-image.loaded {
 }
 /* style switcher */
 .style-switcher {
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   position: fixed;
   top: 100px;
   left: 0;
@@ -12922,7 +12922,7 @@ img.lazy-image.loaded {
   color: #575253;
   font-size: 30px;
   line-height: 1;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   margin-bottom: 20px;
 }
 
@@ -12941,7 +12941,7 @@ img.lazy-image.loaded {
 .style-switcher .language-feature button {
   border: none;
   outline: none;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   font-size: 16px;
   text-transform: uppercase;
   background-color: #575253;
@@ -14136,7 +14136,7 @@ img.lazy-image.loaded {
   margin: 0;
   color: #fff;
   font-weight: 800;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   font-size: 30px;
 }
 
@@ -14156,7 +14156,7 @@ img.lazy-image.loaded {
   line-height: 1;
   font-weight: 600;
   font-size: 14px;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   color: #fff;
   margin-bottom: 15px;
   margin-top: 30px;
@@ -18124,7 +18124,7 @@ img.lazy-image.loaded {
   }
 }
 .video-six__video__text {
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   font-size: 30px;
   color: #ffffff;
   margin: 0;
@@ -22022,7 +22022,7 @@ img.lazy-image.loaded {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   color: #575253;
   font-size: 30px;
   margin-bottom: 20px;
@@ -22097,7 +22097,7 @@ img.lazy-image.loaded {
   line-height: 1;
   font-size: 60px;
   color: #eef0f6;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   content: counters(serviceNumber, ".", decimal-leading-zero);
   position: absolute;
   right: 35px;
@@ -22456,7 +22456,7 @@ img.lazy-image.loaded {
 .slider-eight__text {
   margin: 0;
   color: #fff;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   font-size: 18px;
   line-height: 1.2;
   -webkit-transform-origin: bottom center;
@@ -24138,7 +24138,7 @@ img.lazy-image.loaded {
   font-size: 30px;
   color: #fff;
   line-height: 40px;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   margin: 0;
 }
 
@@ -25346,7 +25346,7 @@ img.lazy-image.loaded {
   line-height: 30px;
   margin: 0;
   color: #10adad;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
 }
 
 .slider-eleven__social {
@@ -25863,7 +25863,7 @@ img.lazy-image.loaded {
 
 .home-showcase__top-title {
   font-size: 70px;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   color: #575253;
   line-height: 70px;
   text-align: center;
@@ -25956,7 +25956,7 @@ img.lazy-image.loaded {
   font-weight: 300;
   color: #575253;
   margin-top: 26px;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   line-height: 24px;
@@ -25965,7 +25965,7 @@ img.lazy-image.loaded {
 .home-showcase .btn-style-one .btn-title {
   font-size: 16px;
   padding: 14px 0px 11px;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
 }
 
 .mobile-nav__container .home-showcase__top-title {
@@ -31422,7 +31422,7 @@ img.lazy-image.loaded {
 .scroll-top::after {
   position: absolute;
   content: "\e910";
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   text-align: center;
   line-height: 50px;
   font-size: 17px;
@@ -31527,7 +31527,7 @@ img.lazy-image.loaded {
   font-size: 36px;
   color: #3fbbc0;
   font-weight: 600;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   margin-bottom: 20px;
 }
 
@@ -31583,7 +31583,7 @@ img.lazy-image.loaded {
   transition: none;
   font-size: 14px;
   font-weight: 400;
-  font-family: "Barlow", sans-serif;
+  font-family: "Barlow", serif !important;
   font-weight: 600;
   transition: 0.3s;
 }
@@ -31608,4 +31608,27 @@ img.lazy-image.loaded {
   padding: 1px 0 3px 0;
   background: #3fbbc0;
   color: #fff;
+}
+
+.alert-danger {
+    color: #fff!important;
+    background-color: #10adad!important;
+    border-color: #f5c2c7;
+}
+
+.alert-success {
+    color: #fff!important;
+    background-color: #28a745!important;
+    border-color: #c3e6cb;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }

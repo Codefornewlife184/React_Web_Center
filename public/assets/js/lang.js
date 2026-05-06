@@ -1,3 +1,16 @@
+// localStorage helper functions to replace Cookies
+const Cookies = {
+  set: function(key, value) {
+    localStorage.setItem(key, value);
+  },
+  get: function(key) {
+    return localStorage.getItem(key);
+  },
+  remove: function(key) {
+    localStorage.removeItem(key);
+  }
+};
+
 window.onload = function googleTranslateElementInit() {
   new google.translate.TranslateElement(
     { pageLanguage: 'ES', layout: google.translate.TranslateElement.InlineLayout.SIMPLE },

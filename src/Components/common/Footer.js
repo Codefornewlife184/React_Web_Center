@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import { SRLWrapper } from "simple-react-lightbox";
+
 
 const Footer = () => {
   const { t, i18n } = useTranslation();

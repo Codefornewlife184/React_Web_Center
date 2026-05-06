@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import data from "../../data/product.json";
 import SidebarCategory from "./SidebarCategory";
-import { SRLWrapper } from "simple-react-lightbox";
 import { useTranslation } from "react-i18next";
 
 const Sidebar = () => {
@@ -16,8 +15,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <SRLWrapper>
-        <section className="blog-details section-space p-5">
+      <section className="blog-details section-space p-5">
           <div className="container-fluid">
             <div className="row gutter-y-60">
               <div className="col-lg-3">
@@ -80,7 +78,6 @@ const Sidebar = () => {
             </div>
           </div>
         </section>
-      </SRLWrapper>
     </>
   );
 };

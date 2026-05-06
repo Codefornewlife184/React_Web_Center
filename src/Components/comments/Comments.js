@@ -1,35 +1,34 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Suspense } from 'react';
-import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import './Comments.css';
 import { useTranslation } from 'react-i18next';
 
 const Comments = () => {
     const { t } = useTranslation();
 
-    const options = {
+    const swiperOptions = {
+        modules: [Navigation, Autoplay],
         loop: true,
-        margin: 30,
-        nav: true,
-        dots: false,
-        autoplayHoverPause: true,
-        autoplay: true,
-        smartSpeed: 500,
-        navText: [
-            '<div class="owl-prev"><i class="flaticon-right-arrow"></i></div>',
-            '<div class="owl-next"><i class="flaticon-right-arrow"></i></div>'
-        ],
-        responsive: {
+        spaceBetween: 30,
+        navigation: true,
+        autoplay: {
+            delay: 3000,
+            pauseOnMouseEnter: true,
+        },
+        speed: 500,
+        breakpoints: {
             0: {
-                items: 1
+                slidesPerView: 1
             },
             768: {
-                items: 2
+                slidesPerView: 2
             },
             992: {
-                items: 3
+                slidesPerView: 3
             }
         }
     };
@@ -148,9 +147,10 @@ const Comments = () => {
                         </h2>
                     </div>
                     
-                    <OwlCarousel className="service-twelev__carousel owl-theme owl-carousel" {...options}>
+                    <Swiper className="service-twelev__carousel" {...swiperOptions}>
                         {testimonials.map((item, index) => (
-                            <div key={index} className="service-twelev__item">
+                            <SwiperSlide key={index}>
+                                <div className="service-twelev__item">
                                 <h3 className="service-twelev__item__title">
                                     <a href="#"><span dangerouslySetInnerHTML={{ __html: item.title }} /></a>
                                 </h3>
@@ -168,8 +168,9 @@ const Comments = () => {
                                     <img src={item.image} alt={t("Web Center")} loading="lazy" />
                                 </div>
                             </div>
+                            </SwiperSlide>
                         ))}
-                    </OwlCarousel>
+                    </Swiper>
                 </div>
             </section>
         </Suspense>

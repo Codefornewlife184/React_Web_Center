@@ -6,6 +6,21 @@ const Projects = () => {
 	
 	// Projeleri bir dizi olarak tanımlayalım
 	const Projects = [
+		
+		{
+			id: 17,
+			title: "SEYMEN KİMYA",
+			description: t("Endüstriyel Ted. Firması İçin Hazırlanan Sitemiz"),
+			image: "assets/images/products/19.webp",
+			url: "https://seymenkimya.com/"
+		},
+		{
+			id: 16,
+			title: "BKB STORE",
+			description: t("Ambalaj Firması İçin Hazırlanan Sitemiz"),
+			image: "assets/images/products/20.webp",
+			url: "https://bkbstore.com/"
+		},
 		{
 			id: 1,
 			title: "YENİDÜNYA END.",
@@ -49,13 +64,6 @@ const Projects = () => {
 			url: "https://www.efendioglutekstil.com/"
 		},
 		{
-			id: 7,
-			title: "ESMİ WATER",
-			description: t("Arıtma Firması İçin Hazırlanan Sitemiz"),
-			image: "assets/images/products/7.webp",
-			url: "https://esmiwater.com/"
-		},
-		{
 			id: 8,
 			title: "EMEL BEAUTY",
 			description: t("Güzellik Merkezi İçin Hazırlanan Sitemiz"),
@@ -64,10 +72,10 @@ const Projects = () => {
 		},
 		{
 			id: 9,
-			title: "KARDOĞAN GROUP",
-			description: t("PVC Cam Balkon Firması İçin Hazırlanan Sitemiz"),
-			image: "assets/images/products/9.webp",
-			url: "https://kardogangroup.com/"
+			title: "AYPİN OTOMAT",
+			description: t("Otomat Firması İçin Hazırlanan Sitemiz"),
+			image: "assets/images/products/14.webp",
+			url: "https://aypinotomat.com/"
 		},
 		{
 			id: 10,

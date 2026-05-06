@@ -1,7 +1,12 @@
 <?php
 // Hata raporlamayı aç
 error_reporting(E_ALL);
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
+ini_set('log_errors', 1);
+ini_set('error_log', 'error_log');
+
+// UTF-8 karakter kodlaması
+mb_internal_encoding('UTF-8');
 
 // CORS ayarları
 header('Access-Control-Allow-Origin: *');
@@ -24,12 +29,21 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     ]));
 }
 
+// PHPMailer'ı dahil et
+require_once __DIR__ . '/../PHPMailer/src/Exception.php';
+require_once __DIR__ . '/../PHPMailer/src/PHPMailer.php';
+require_once __DIR__ . '/../PHPMailer/src/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 try {
     // Form verilerini al ve temizle
-    $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_STRING);
-    $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
+    $name = isset($_POST['name']) ? trim($_POST['name']) : '';
+    $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+    $subject = isset($_POST['subject']) ? trim($_POST['subject']) : '';
+    $message = isset($_POST['message']) ? trim($_POST['message']) : '';
 
     // Validasyon
     if (empty($name) || empty($email) || empty($subject) || empty($message)) {
@@ -40,43 +54,120 @@ try {
         throw new Exception('Geçerli bir e-posta adresi giriniz');
     }
 
-    // E-posta başlıkları
-    $headers = "From: $email\r\n";
-    $headers .= "Reply-To: $email\r\n";
-    $headers .= "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-
-    // E-posta içeriği
-    $email_content = "
-        <h3>İletişim Formu Mesajı</h3>
-        <p><strong>İsim:</strong> {$name}</p>
-        <p><strong>E-posta:</strong> {$email}</p>
-        <p><strong>Konu:</strong> {$subject}</p>
-        <p><strong>Mesaj:</strong></p>
-        <p>{$message}</p>
-    ";
-
-    // E-posta gönder
-    $to = "info@webcenter.com.tr";
-    $email_subject = "İletişim Formu: $subject";
-
-    // Mail gönderme işlemi
-    $mail_sent = mail($to, $email_subject, $email_content, $headers);
+    // Mesajları bir dosyaya kaydet
+    $log_entry = date('Y-m-d H:i:s') . " | " .
+                 "İsim: $name | " . 
+                 "E-posta: $email | " . 
+                 "Konu: $subject | " . 
+                 "Mesaj: $message" . 
+                 "\n";
     
-    if($mail_sent) {
-        echo json_encode([
-            'status' => 'success',
-            'message' => 'Mesajınız başarıyla gönderildi'
-        ]);
-    } else {
-        throw new Exception("Mail gönderilemedi. Lütfen daha sonra tekrar deneyiniz.");
+    if (!file_put_contents('contact_messages.txt', $log_entry, FILE_APPEND | LOCK_EX)) {
+        throw new Exception('Mesaj kaydedilemedi');
     }
-
+    
+    // PHPMailer ile e-posta gönderme
+    $mail = new PHPMailer(true);
+    $mail_sent = false;
+    
+    try {
+        // SMTP ayarları - güncel mail istemci bilgileri
+        $mail->isSMTP();
+        $mail->Host       = 'shanks.trdns.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'info@webcenter.com.tr';
+        $mail->Password   = 'Wc12345678.,.';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port       = 465;
+        
+        // SSL doğrulamasını esnek yap
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+        
+        // Karakter kodlaması
+        $mail->CharSet = 'UTF-8';
+        $mail->Encoding = 'base64';
+        $mail->Timeout = 30;
+        
+        // Gönderen bilgileri
+        $mail->setFrom('info@webcenter.com.tr', 'Web Center İletişim Formu');
+        $mail->addAddress('info@webcenter.com.tr', 'Web Center');
+        $mail->addReplyTo($email, $name);
+        
+        // E-posta içeriği
+        $mail->isHTML(false); // Düz metin
+        $mail->Subject = 'Web Sitesi İletişim Formu: ' . $subject;
+        
+        $email_body = "İsim: $name\n";
+        $email_body .= "E-posta: $email\n";
+        $email_body .= "Konu: $subject\n\n";
+        $email_body .= "Mesaj:\n$message\n\n";
+        $email_body .= "Gönderim Tarihi: " . date('Y-m-d H:i:s') . "\n";
+        $email_body .= "IP Adresi: " . ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+        
+        $mail->Body = $email_body;
+        
+        // E-postayı gönder
+        $mail->send();
+        $mail_sent = true;
+        error_log("PHPMailer ile mail başarıyla gönderildi: $subject");
+        
+    } catch (Exception $e) {
+        error_log("PHPMailer Hatası: " . $mail->ErrorInfo);
+        
+        // Fallback: Basit PHP mail() fonksiyonu
+        $to = "info@webcenter.com.tr";
+        $email_subject = "Web Sitesi İletişim Formu: " . $subject;
+        $email_body = "İsim: $name\n";
+        $email_body .= "E-posta: $email\n";
+        $email_body .= "Konu: $subject\n\n";
+        $email_body .= "Mesaj:\n$message\n\n";
+        $email_body .= "Gönderim Tarihi: " . date('Y-m-d H:i:s') . "\n";
+        $email_body .= "IP Adresi: " . ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+        
+        $headers = "From: info@webcenter.com.tr\r\n";
+        $headers .= "Reply-To: $email\r\n";
+        $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion();
+        
+        if (@mail($to, $email_subject, $email_body, $headers)) {
+            $mail_sent = true;
+            error_log("Fallback mail() ile mail gönderildi: $email_subject");
+        } else {
+            error_log("Mail gönderilemedi - hem PHPMailer hem de mail() başarısız");
+        }
+    }
+    
+    // Başarılı yanıt
+    if ($mail_sent) {
+        $response_message = 'Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.';
+    } else {
+        $response_message = 'Mesajınız başarıyla kaydedildi. E-posta bildirimi gönderilemedi, ancak mesajınız kaydedildi.';
+    }
+    
+    echo json_encode([
+        'status' => 'success',
+        'message' => $response_message
+    ]);
+        
 } catch (Exception $e) {
-    error_log("Mail Hatası: " . $e->getMessage());
+    error_log("Contact Form Error: " . $e->getMessage());
     http_response_code(500);
     echo json_encode([
         'status' => 'error',
         'message' => $e->getMessage()
     ]);
+} catch (Error $e) {
+    error_log("Contact Form Fatal Error: " . $e->getMessage());
+    http_response_code(500);
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Sunucu hatası oluştu'
+    ]);
 }
+?>

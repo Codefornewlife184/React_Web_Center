@@ -12,9 +12,9 @@ function Hosting() {
           <div className="row mt-5">
             <div className="col-lg-3 col-md-6">
               <div className="box" data-aos="fade-up" data-aos-delay="100">
-                <span className="advanced" style={{ color: '#10adad' }}>{t("En Uygun")}</span>
+                <span className="advanced" style={{ color: '#fff' }}>{t("En Uygun")}</span>
                 <h3>{t("Başlangıç")}</h3>
-                <h4><sup>$</sup>15<span> / yıllık</span></h4>
+                <h4><sup>$</sup>20<span> / {t("yıllık")}</span></h4>
                 <ul>
                   <li>{t("1 Site")} {t("Site Barındırma")}</li>
                   <li>{t("10 GB")} {t("Disk Alanı")}</li>
@@ -40,7 +40,7 @@ function Hosting() {
             <div className="col-lg-3 col-md-6 mt-4 mt-md-0">
               <div className="box featured" data-aos="fade-up" data-aos-delay="200">
                 <h3>{t("Uzman")}</h3>
-                <h4><sup>$</sup>39<span> / yıllık</span></h4>
+                <h4><sup>$</sup>49<span> / {t("yıllık")}</span></h4>
                 <ul>
                   <li>{t("3 Site")} {t("Site Barındırma")}</li>
                   <li>{t("10 GB")} {t("Disk Alanı")}</li>
@@ -66,7 +66,7 @@ function Hosting() {
             <div className="col-lg-3 col-md-6 mt-4 mt-lg-0">
               <div className="box featured" data-aos="fade-up" data-aos-delay="300">
                 <h3>{t("Profosyonel")}</h3>
-                <h4><sup>$</sup>59<span> / yıllık</span></h4>
+                <h4><sup>$</sup>75<span> / {t("yıllık")}</span></h4>
                 <ul>
                   <li>{t("SINIRSIZ")} {t("Site Barındırma")}</li>
                   <li>{t("SINIRSIZ")} {t("Disk Alanı")}</li>
@@ -91,9 +91,9 @@ function Hosting() {
 
             <div className="col-lg-3 col-md-6 mt-4 mt-lg-0">
               <div className="box" data-aos="fade-up" data-aos-delay="400">
-                <span className="advanced" style={{ color: '#10adad' }}>{t("En Avantajlı")}</span>
+                <span className="advanced" style={{ color: '#fff' }}>{t("En Avantajlı")}</span>
                 <h3>{t("Ultra")}</h3>
-                <h4><sup>$</sup>119<span> / yıllık</span></h4>
+                <h4><sup>$</sup>149<span> / {t("yıllık")}</span></h4>
                 <ul>
                   <li>{t("SINIRSIZ")} {t("Site Barındırma")}</li>
                   <li>{t("SINIRSIZ")} {t("Disk Alanı")}</li>

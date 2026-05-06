@@ -4,6 +4,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import logoImage from "../../assets/images/logo.webp";
 
 function Header() {
   const { t, i18n } = useTranslation();
@@ -69,7 +70,13 @@ function Header() {
   }, [isMenuOpen]);
 
   const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
+    console.log('Dil değiştiriliyor:', lng);
+    console.log('Mevcut dil:', i18n.language);
+    i18n.changeLanguage(lng).then(() => {
+      console.log('Dil başarıyla değiştirildi:', i18n.language);
+    }).catch((error) => {
+      console.error('Dil değiştirme hatası:', error);
+    });
   };
 
   const handleLinkClick = (path) => {
@@ -99,7 +106,7 @@ function Header() {
         <div className="side-menu__block-inner">
           <div className="side-menu__top justify-content-between">
             <Link to="/">
-              <img src="assets/images/logo-mobile.webp" width="135" alt="Web Center" loading="lazy" />
+              <img src="/assets/images/logo-mobile.webp" width="135" alt="Web Center" loading="lazy" />
             </Link>
             <button className="side-menu__toggler side-menu__close-btn" onClick={toggleMenu}>
               <img src="assets/images/icons/close-1-1.webp" alt="Close" loading="lazy" />
@@ -251,7 +258,7 @@ function Header() {
           <div className="logo-box">
             <div className="logo">
               <a onClick={() => handleLinkClick('/')}>
-                <img src="assets/images/logo.webp" width="135" alt="Web Center" loading="lazy" />
+                <img src={logoImage} width="135" alt="Web Center" loading="lazy" />
               </a>
             </div>
           </div>

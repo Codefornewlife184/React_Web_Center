@@ -1,3 +1,5 @@
 User-agent: *
+Allow: /assets/images/favicons/
+Allow: /favicon.ico
 
-Sitemap: https://indizayn.com.tr/sitemap.xml
+Sitemap: https://webcenter.com.tr/sitemap.xml

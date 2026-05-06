@@ -14,7 +14,7 @@ function DomainSSL() {
                     <div className="col-lg-4 col-md-6 mt-4 mt-md-0">
                         <div className="box featured" data-aos="fade-up" data-aos-delay="200">
                             <h3>{t("Domain & .com")}</h3>
-                            <h4><sup>$</sup>9<span>{t("/ yıllık")}</span></h4>
+                            <h4><sup>$</sup>15<span>{t("/ yıllık")}</span></h4>
                             <ul>
                                 <li>{t("www.siteadi.com")}</li>
                             </ul>
@@ -30,7 +30,7 @@ function DomainSSL() {
                     <div className="col-lg-4 col-md-6 mt-4 mt-md-0">
                         <div className="box featured" data-aos="fade-up" data-aos-delay="200">
                             <h3>{t("Domain & .com.tr")}</h3>
-                            <h4><sup>$</sup>1.9<span>{t("/ yıllık")}</span></h4>
+                            <h4><sup>$</sup>7<span>{t("/ yıllık")}</span></h4>
                             <ul>
                                 <li>{t("www.siteadi.com.tr")}</li>
                             </ul>
@@ -46,7 +46,7 @@ function DomainSSL() {
                     <div className="col-lg-4 col-md-6 mt-4 mt-lg-0">
                         <div className="box featured" data-aos="fade-up" data-aos-delay="300">
                             <h3>{t("SSL Güvenlik Sertifikası")}</h3>
-                            <h4><sup>$</sup>29<span>{t("/ yıllık")}</span></h4>
+                            <h4><sup>$</sup>39<span>{t("/ yıllık")}</span></h4>
                             <ul>
                                 <li><strong style={{color:'#10adad'}}>https </strong>{t("://www.siteadi.com")}</li>
                             </ul>
